@@ -42,7 +42,7 @@ class MipNerfModel(nn.Module):
   density_activation: Callable[..., Any] = nn.softplus  # Density activation.
   density_noise: float = 0.  # Standard deviation of noise added to raw density.
   density_bias: float = -1.  # The shift added to raw densities pre-activation.
-  rgb_activation: Callable[..., Any] = nn.sigmoid  # The RGB activation.
+  rgb_activation: Callable[..., Any] = nn.elu  # The RGB activation.
   rgb_padding: float = 0.001  # Padding added to the RGB outputs.
   disable_integration: bool = False  # If True, use PE instead of IPE.
 
