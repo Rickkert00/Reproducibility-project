@@ -1,0 +1,18 @@
+https://arxiv.org/pdf/1811.11127.pdf -> unprocessing
+https://arxiv.org/pdf/2111.13679.pdf -> rawNerf
+
+borrowing color correction, white balance, and noise parameters from our iPhone
+captures’ EXIF metadata to “unprocess” this data into raw space
+
+TODO:
+demosaic (converting to 1 color channel / pixel)
+Inverting this step is trivial—for each pixel in the image we
+omit two of its three color values according to the Bayer
+filter pattern
+
+This consists of inverting, in order,
+tone mapping (Section 3.7),
+applying gamma decompression (Section 3.6),
+applying the sRGB to camera RGB color correction matrix (Section 3.5),
+and inverting white balance gains (Section 3.4)
+and digital gain (Section 3.3)
