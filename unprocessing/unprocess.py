@@ -42,14 +42,14 @@ def random_ccm():
                [-0.097, 0.1581, 0.5181]]]
   num_ccms = len(xyz2cams)
   xyz2cams = tf.constant(xyz2cams)
-  weights = tf.random_uniform((num_ccms, 1, 1), 1e-8, 1e8)
+  weights = tf.random.uniform((num_ccms, 1, 1), 1e-8, 1e8)
   weights_sum = tf.reduce_sum(weights, axis=0)
   xyz2cam = tf.reduce_sum(xyz2cams * weights, axis=0) / weights_sum
 
   # Multiplies with RGB -> XYZ to get RGB -> Camera CCM.
-  rgb2xyz = tf.to_float([[0.4124564, 0.3575761, 0.1804375],
+  rgb2xyz = tf.cast([[0.4124564, 0.3575761, 0.1804375],
                          [0.2126729, 0.7151522, 0.0721750],
-                         [0.0193339, 0.1191920, 0.9503041]])
+                         [0.0193339, 0.1191920, 0.9503041]], dtype=tf.float32)
   rgb2cam = tf.matmul(xyz2cam, rgb2xyz)
 
   # Normalizes each row.
@@ -60,11 +60,11 @@ def random_ccm():
 def random_gains():
   """Generates random gains for brightening and white balance."""
   # RGB gain represents brightening.
-  rgb_gain = 1.0 / tf.random_normal((), mean=0.8, stddev=0.1)
+  rgb_gain = 1.0 / tf.random.normal((), mean=0.8, stddev=0.1)
 
   # Red and blue gains represent white balance.
-  red_gain = tf.random_uniform((), 1.9, 2.4)
-  blue_gain = tf.random_uniform((), 1.5, 1.9)
+  red_gain = tf.random.uniform((), 1.9, 2.4)
+  blue_gain = tf.random.uniform((), 1.5, 1.9)
   return rgb_gain, red_gain, blue_gain
 
 
@@ -116,12 +116,12 @@ def mosaic(image):
 
 def unprocess(image):
   """Unprocesses an image from sRGB to realistic raw data."""
-  with tf.name_scope(None, 'unprocess'):
+  with tf.name_scope('unprocess'):
     image.shape.assert_is_compatible_with([None, None, 3])
 
     # Randomly creates image metadata.
     rgb2cam = random_ccm()
-    cam2rgb = tf.matrix_inverse(rgb2cam)
+    cam2rgb = tf.linalg.inv(rgb2cam)
     rgb_gain, red_gain, blue_gain = random_gains()
 
     # Approximately inverts global tone mapping.
