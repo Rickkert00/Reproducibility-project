@@ -113,7 +113,7 @@ def main(unused_argv):
           showcase_gt = batch['pixels']
       if not config.render_path:
         psnr = float(
-            math.mse_to_psnr(((pred_color - batch['pixels'])**2).mean()))
+            math.mse_to_psnr(((pred_color - batch['pixels']) ** 2).mean()))
         ssim = float(ssim_fn(pred_color, batch['pixels']))
         print(f'PSNR={psnr:.4f} SSIM={ssim:.4f}')
         psnr_values.append(psnr)

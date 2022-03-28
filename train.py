@@ -296,7 +296,7 @@ def main(unused_argv):
 
       # Log eval summaries on host 0.
       if jax.host_id() == 0:
-        psnr = math.mse_to_psnr(((pred_color - test_case['pixels'])**2).mean())
+        psnr = math.mse_to_psnr(((pred_color - test_case['pixels']) ** 2).mean())
         ssim = ssim_fn(pred_color, test_case['pixels'])
         eval_time = time.time() - t_eval_start
         num_rays = jnp.prod(jnp.array(test_case['rays'].directions.shape[:-1]))

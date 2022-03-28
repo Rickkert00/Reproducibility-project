@@ -1,4 +1,3 @@
-import cv2
 import unprocess
 import tensorflow as tf
 from plantcv import plantcv as pcv
