@@ -61,49 +61,49 @@ def train_step(model, config, rng, state, batch, lr):
   """
   rng, key = random.split(rng)
 
+  # def loss_fn(variables):
+  #
+  #   def tree_sum_fn(fn):
+  #     return jax.tree_util.tree_reduce(
+  #         lambda x, y: x + fn(y), variables, initializer=0)
+  #
+  #   weight_l2 = config.weight_decay_mult * (
+  #       tree_sum_fn(lambda z: jnp.sum(z**2)) /
+  #       tree_sum_fn(lambda z: jnp.prod(jnp.array(z.shape))))
+  #
+  #   ret = model.apply(
+  #       variables,
+  #       key,
+  #       batch['rays'],
+  #       randomized=config.randomized,
+  #       white_bkgd=config.white_bkgd)
+  #
+  #   mask = batch['rays'].lossmult
+  #   if config.disable_multiscale_loss:
+  #     mask = jnp.ones_like(mask)
+  #
+  #   losses = []
+  #   for (rgb, _, _) in ret:
+  #     losses.append(
+  #         (mask * (rgb - batch['pixels'][..., :3])**2).sum() / mask.sum())
+  #   losses = jnp.array(losses)
+  #
+  #   loss = (
+  #       config.coarse_loss_mult * jnp.sum(losses[:-1]) + losses[-1] + weight_l2)
+  #
+  #   stats = utils.Stats(
+  #       loss=loss,
+  #       losses=losses,
+  #       weight_l2=weight_l2,
+  #       psnr=0.0,
+  #       psnrs=0.0,
+  #       grad_norm=0.0,
+  #       grad_abs_max=0.0,
+  #       grad_norm_clipped=0.0,
+  #   )
+  #   return loss, stats
+
   def loss_fn(variables):
-
-    def tree_sum_fn(fn):
-      return jax.tree_util.tree_reduce(
-          lambda x, y: x + fn(y), variables, initializer=0)
-
-    weight_l2 = config.weight_decay_mult * (
-        tree_sum_fn(lambda z: jnp.sum(z**2)) /
-        tree_sum_fn(lambda z: jnp.prod(jnp.array(z.shape))))
-
-    ret = model.apply(
-        variables,
-        key,
-        batch['rays'],
-        randomized=config.randomized,
-        white_bkgd=config.white_bkgd)
-
-    mask = batch['rays'].lossmult
-    if config.disable_multiscale_loss:
-      mask = jnp.ones_like(mask)
-
-    losses = []
-    for (rgb, _, _) in ret:
-      losses.append(
-          (mask * (rgb - batch['pixels'][..., :3])**2).sum() / mask.sum())
-    losses = jnp.array(losses)
-
-    loss = (
-        config.coarse_loss_mult * jnp.sum(losses[:-1]) + losses[-1] + weight_l2)
-
-    stats = utils.Stats(
-        loss=loss,
-        losses=losses,
-        weight_l2=weight_l2,
-        psnr=0.0,
-        psnrs=0.0,
-        grad_norm=0.0,
-        grad_abs_max=0.0,
-        grad_norm_clipped=0.0,
-    )
-    return loss, stats
-
-  def loss_fn_update(variables):
       def tree_sum_fn(fn):
           return jax.tree_util.tree_reduce(
               lambda x, y: x + fn(y), variables, initializer=0)
