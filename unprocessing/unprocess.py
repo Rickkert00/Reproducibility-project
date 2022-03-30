@@ -135,7 +135,7 @@ def unprocess(image):
     # Clips saturated pixels.
     image = tf.clip_by_value(image, 0.0, 1.0)
     # Applies a Bayer mosaic.
-    image = mosaic(image)
+    # image = mosaic(image)
 
     metadata = {
         'cam2rgb': cam2rgb,
