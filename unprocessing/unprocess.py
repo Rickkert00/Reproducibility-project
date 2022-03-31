@@ -114,15 +114,15 @@ def mosaic(image):
   return image
 
 
-def unprocess(image):
+def unprocess(image, metadata):
   """Unprocesses an image from sRGB to realistic raw data."""
   with tf.name_scope('unprocess'):
     image.shape.assert_is_compatible_with([None, None, 3])
 
     # Randomly creates image metadata.
-    rgb2cam = random_ccm()
-    cam2rgb = tf.linalg.inv(rgb2cam)
-    rgb_gain, red_gain, blue_gain = random_gains()
+    cam2rgb = metadata["cam2rgb"]
+    rgb2cam = tf.linalg.inv(cam2rgb)
+    rgb_gain, red_gain, blue_gain = metadata["rgb_gain"], metadata["red_gain"], metadata["blue_gain"]
 
     # Approximately inverts global tone mapping.
     image = inverse_smoothstep(image)
@@ -137,13 +137,7 @@ def unprocess(image):
     # Applies a Bayer mosaic.
     # image = mosaic(image)
 
-    metadata = {
-        'cam2rgb': cam2rgb,
-        'rgb_gain': rgb_gain,
-        'red_gain': red_gain,
-        'blue_gain': blue_gain,
-    }
-    return image, metadata
+    return image
 
 
 def random_noise_levels():
@@ -154,13 +148,13 @@ def random_noise_levels():
   shot_noise = tf.exp(log_shot_noise)
 
   line = lambda x: 2.18 * x + 1.20
-  log_read_noise = line(log_shot_noise) + tf.random_normal((), stddev=0.26)
+  log_read_noise = line(log_shot_noise) + tf.random.normal((), stddev=0.26)
   read_noise = tf.exp(log_read_noise)
   return shot_noise, read_noise
 
 
-def add_noise(image, shot_noise=0.01, read_noise=0.0005):
+def add_noise(image, shot_noise=0.5, read_noise=0.0005):
   """Adds random shot (proportional to image) and read (independent) noise."""
-  variance = image * shot_noise + read_noise
-  noise = tf.random_normal(tf.shape(image), stddev=tf.sqrt(variance))
+  variance = image * shot_noise
+  noise = tf.random.normal(tf.shape(image), stddev=tf.sqrt(variance))
   return image + noise
