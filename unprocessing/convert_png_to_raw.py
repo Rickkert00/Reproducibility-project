@@ -19,7 +19,7 @@ def unprocess_image(image_name):
 if __name__ == '__main__':
     NUM_IMAGES = 120
     TOTAL_IMAGES = 200
-    ratio = NUM_IMAGES/ TOTAL_IMAGES
+    ratio = NUM_IMAGES / TOTAL_IMAGES
     step = TOTAL_IMAGES/NUM_IMAGES
     transform_original = json.load(open("../data/nerf_synthetic/lego/transforms_test.json"))
     transform_new = copy(transform_original)
