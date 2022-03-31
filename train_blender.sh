@@ -18,12 +18,12 @@
 SCENE=lego
 EXPERIMENT=debug
 TRAIN_DIR=nerf_results/$EXPERIMENT/$SCENE
-DATA_DIR=data/nerf_synthetic/$SCENE
+DATA_DIR=data/nerf_raw/$SCENE
 
 #rm $TRAIN_DIR/*
 python3 -m train \
   --data_dir=$DATA_DIR \
   --train_dir=$TRAIN_DIR \
-  --gin_file=configs/blender.gin \
+  --gin_file=configs/rawNERF.gin \
   --gin_param="Config.batch_size = 1024"
   --logtostderr
