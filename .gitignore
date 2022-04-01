@@ -6,7 +6,6 @@ __pycache__/
 nerf_results/
 # C extensions
 *.so
-data/nerf_raw_noise
 data/nerf_synthetic
 scenes/
 .idea/
