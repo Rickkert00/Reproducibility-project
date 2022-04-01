@@ -6,7 +6,7 @@ import tensorflow as tf
 
 def copy_sample(sample_size, set_size, set_folder, sample_folder):
     step = set_size / sample_size
-    total_transforms_dict = json.load(open(os.path.join(set_folder, "../total_transforms_train.json"), "r"))
+    total_transforms_dict = json.load(open(os.path.join(set_folder, "../transforms_train.json"), "r"))
     current_transforms_dict = copy(total_transforms_dict)
     # clear the list of the current transforms dict so we can start updating it
     current_transforms_dict["frames"] = []
@@ -52,7 +52,7 @@ def split_training_test(training_size, set_folder, train_folder, test_folder):
             tf.io.write_file(os.path.join(test_folder, f"r_{i}_depth_0001.png"), mask_img)
             test_transforms["frames"].append(total_transforms["frames"][i])
 
-    with open(os.path.join(train_folder, "../total_transforms_train.json"), "w") as file_writer:
+    with open(os.path.join(train_folder, "../transforms_train.json"), "w") as file_writer:
         json.dump(train_transforms, file_writer, indent=4)
 
     with open(os.path.join(test_folder, "../transforms_test.json"), "w") as file_writer:
