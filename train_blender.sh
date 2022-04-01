@@ -18,7 +18,7 @@
 SCENE=lego
 EXPERIMENT=debug
 TRAIN_DIR=nerf_results/$EXPERIMENT/$SCENE
-DATA_DIR=data/nerf_raw/$SCENE
+DATA_DIR=data/our_nerf_synthetic/$SCENE
 
 #rm $TRAIN_DIR/*
 python3 -m train \
