@@ -25,5 +25,5 @@ python3 -m train \
   --data_dir=$DATA_DIR \
   --train_dir=$TRAIN_DIR \
   --gin_file=configs/rawNERF.gin \
-  --gin_param="Config.batch_size = 1024"
+  --gin_param="Config.batch_size = 16000"
   --logtostderr
