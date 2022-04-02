@@ -6,7 +6,7 @@ import tensorflow as tf
 
 def copy_sample(sample_size, set_size, set_folder, sample_folder):
     step = set_size / sample_size
-    total_transforms_dict = json.load(open(os.path.join(set_folder, "../total_transforms_train.json"), "r"))
+    total_transforms_dict = json.load(open(os.path.join(set_folder, "../transforms_train.json"), "r"))
     current_transforms_dict = copy(total_transforms_dict)
     # clear the list of the current transforms dict so we can start updating it
     current_transforms_dict["frames"] = []
