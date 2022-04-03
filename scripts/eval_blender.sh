@@ -15,14 +15,14 @@
 
 # Script for evaluating on the Blender dataset.
 
-SCENE=lego
+SCENE=nerf_raw_noise_120_train
 EXPERIMENT=debug
-TRAIN_DIR=/Users/barron/tmp/nerf_results/$EXPERIMENT/$SCENE
-DATA_DIR=/Users/barron/data/nerf_synthetic/$SCENE
+TRAIN_DIR=all_results/nerf_raw_noise_120_1024
+DATA_DIR=data/nerf_raw_noise/lego_raw_120
 
-python -m eval \
+python3 -m eval \
   --data_dir=$DATA_DIR \
   --train_dir=$TRAIN_DIR \
-  --chunk=3076 \
-  --gin_file=configs/blender.gin \
+  --chunk=1024 \
+  --gin_file=configs/rawNERF.gin \
   --logtostderr

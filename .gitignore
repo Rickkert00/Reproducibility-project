@@ -2,7 +2,9 @@
 __pycache__/
 *.py[cod]
 *$py.class
-
+all_data_sets
+all_results
+data/
 # C extensions
 *.so
 data/nerf_synthetic
