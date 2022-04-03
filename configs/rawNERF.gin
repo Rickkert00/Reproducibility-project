@@ -4,3 +4,4 @@ Config.lr_final = 0.00001
 Config.max_steps = 500000
 Config.dataset_loader = 'blender'
 Config.batching = 'single_image'
+Config.white_bkgd = False
