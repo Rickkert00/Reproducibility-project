@@ -130,7 +130,7 @@ def train_step(model, config, rng, state, batch, lr):
           # losses.append(
           #     (mask * ((rgb - batch['pixels'][..., :3]) / (jax.lax.stop_gradient(rgb) + 10E-3)) ** 2).sum() / mask.sum())
           losses.append(
-              (((rgb - batch['pixels'][..., :3]) / (jax.lax.stop_gradient(rgb) + 10E-3)) ** 2).sum())
+              (((rgb - batch['pixels'][..., :3]) / (jax.lax.stop_gradient(rgb) + 10**-3)) ** 2).sum())
       losses = jnp.array(losses)
 
       loss = (
