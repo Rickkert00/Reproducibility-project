@@ -16,8 +16,8 @@ if __name__ == '__main__':
         raw_img = unprocess.unprocess(png_image, metadata)
         raw_img_white_level = raw_img * 255.0
         raw_numpy_img = raw_img_white_level.numpy()
-        raw_img_noise = unprocess.add_noise(raw_numpy_img)
-        tf.keras.utils.save_img('../data/nerf_raw_noise/lego/total_train/' + filename, raw_img_noise, scale=False)
+        # raw_numpy_img = unprocess.add_noise(raw_numpy_img)
+        tf.keras.utils.save_img('../data/nerf_raw/lego/train/' + filename, raw_numpy_img, scale=False)
 
 
     # for filename in os.listdir('../data/nerf_synthetic/lego/test'):

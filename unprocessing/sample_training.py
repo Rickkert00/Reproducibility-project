@@ -60,7 +60,7 @@ def split_training_test(training_size, set_folder, train_folder, test_folder):
 
 if __name__ == '__main__':
     # copy sample
-    SAMPLE_SIZE = 120
+    SAMPLE_SIZE = 90
     SET_SIZE = 120
     assert SAMPLE_SIZE <= SET_SIZE
 
