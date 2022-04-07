@@ -4,6 +4,7 @@ from copy import copy
 
 import tensorflow as tf
 
+
 def copy_sample(sample_size, set_size, set_folder, sample_folder):
     step = set_size / sample_size
     total_transforms_dict = json.load(open(os.path.join(set_folder, "../total_transforms_train.json"), "r"))
@@ -58,9 +59,10 @@ def split_training_test(training_size, set_folder, train_folder, test_folder):
     with open(os.path.join(test_folder, "../transforms_test.json"), "w") as file_writer:
         json.dump(test_transforms, file_writer, indent=4)
 
+
 if __name__ == '__main__':
     # copy sample
-    SAMPLE_SIZE = 90
+    SAMPLE_SIZE = 60
     SET_SIZE = 120
     assert SAMPLE_SIZE <= SET_SIZE
 
@@ -76,4 +78,3 @@ if __name__ == '__main__':
     # test_folder = "../data/our_nerf_synthetic/lego/test/"
     #
     # split_training_test(training_size, set_folder, train_folder, test_folder)
-
