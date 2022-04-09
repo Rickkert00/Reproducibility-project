@@ -15,10 +15,16 @@
 
 # Script for evaluating on the Blender dataset.
 
+#SCENE=lego
+#EXPERIMENT=debug
+#TRAIN_DIR=/Users/barron/tmp/nerf_results/$EXPERIMENT/$SCENE # weights/checkpoint
+#DATA_DIR=/Users/barron/data/nerf_synthetic/$SCENE #training
+
 SCENE=lego
 EXPERIMENT=debug
-TRAIN_DIR=/Users/barron/tmp/nerf_results/$EXPERIMENT/$SCENE
-DATA_DIR=/Users/barron/data/nerf_synthetic/$SCENE
+TRAIN_DIR=lego/data/all_results/nerf_raw_noise_60_1024
+DATA_DIR=lego/data/all_data_sets/ #nerf_raw_noise_60_train
+
 
 python -m eval \
   --data_dir=$DATA_DIR \
