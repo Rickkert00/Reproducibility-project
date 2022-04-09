@@ -30,5 +30,5 @@ python -m eval \
   --data_dir=$DATA_DIR \
   --train_dir=$TRAIN_DIR \
   --chunk=3076 \
-  --gin_file=configs/blender.gin \
+  --gin_file=configs/rawNERF.gin \
   --logtostderr
