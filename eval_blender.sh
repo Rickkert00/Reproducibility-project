@@ -23,7 +23,7 @@
 
 SCENE=lego
 EXPERIMENT=debug
-TRAIN_DIR1=nerf_results/saved/all_results/nerf_raw_noise_90_1024
+TRAIN_DIR1=nerf_results/saved/all_results/v2_nerf_raw_noise_90_1024
 DATA_DIR1=nerf_results/saved/all_data_sets/ #nerf_raw_noise_60_train
 
 
@@ -36,7 +36,7 @@ python3 -m eval \
 
 SCENE=lego
 EXPERIMENT=debug
-TRAIN_DIR2=nerf_results/saved/all_results/nerf_raw_noise_60_1024
+TRAIN_DIR2=nerf_results/saved/all_results/v2_nerf_raw_noise_60_1024
 DATA_DIR2=nerf_results/saved/all_data_sets/ #nerf_raw_noise_60_train
 
 
@@ -49,7 +49,7 @@ python3 -m eval \
 
 SCENE=lego
 EXPERIMENT=debug
-TRAIN_DIR3=nerf_results/saved/all_results/nerf_raw_noise_30_1024
+TRAIN_DIR3=nerf_results/saved/all_results/v2_nerf_raw_noise_30_1024
 DATA_DIR3=nerf_results/saved/all_data_sets/ #nerf_raw_noise_60_train
 
 
