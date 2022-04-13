@@ -105,7 +105,7 @@ def main(unused_argv):
             vis_suite = vis.visualize_suite(pred_distance, pred_acc)
 
             # TODO put pred_color through the post processing
-            pred_color = process(pred_color)
+            pred_color = process(pred_color).numpy()
 
             if jax.host_id() != 0:  # Only record via host 0.
                 continue
