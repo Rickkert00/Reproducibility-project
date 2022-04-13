@@ -22,8 +22,9 @@
 
 SCENE=lego
 EXPERIMENT=debug
-TRAIN_DIR=lego/data/all_results/nerf_raw_noise_60_1024
-DATA_DIR=lego/data/all_data_sets/ #nerf_raw_noise_60_train
+FRAMES=60
+TRAIN_DIR=nerf_results/saved/all_results/nerf_raw_noise_$FRAMES_1024
+DATA_DIR=nerf_results/saved/all_data_sets/nerf_raw_noise_$FRAMES_train
 
 
 python3 -m eval \
