@@ -5,3 +5,4 @@ Config.max_steps = 500000
 Config.dataset_loader = 'blender'
 Config.batching = 'single_image'
 Config.white_bkgd = False
+Config.save_every = 50000
